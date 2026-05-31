@@ -3,54 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video 1</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Truyện Cổ Tích Việt Nam</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f9f8f6; --surface: #ffffff; --border: #e8e6e1;
-      --text-primary: #1a1a18; --text-muted: #8a8880; --radius: 16px;
+
+    body {
+      background: #f5f0e8;
+      font-family: 'Be Vietnam Pro', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    html, body { height: 100%; background: var(--bg); font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
-    body { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 24px 16px; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); width: 100%; max-width: 480px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04); }
-    .card-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
-    .badge { width: 32px; height: 32px; background: #1a1a18; color: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 500; flex-shrink: 0; }
-    .card-header h1 { font-size: 15px; font-weight: 500; color: var(--text-primary); letter-spacing: -0.01em; }
-    .card-header p { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-    .video-wrap { position: relative; width: 100%; background: #000; aspect-ratio: 16/9; }
-    .video-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
-    .card-footer { padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { font-size: 12px; color: var(--text-muted); }
-    .nav-links { display: flex; gap: 6px; }
-    .nav-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; padding: 4px 10px; border: 1px solid var(--border); border-radius: 20px; transition: all 0.15s; }
-    .nav-links a:hover { color: var(--text-primary); border-color: var(--text-primary); }
+
+    .video-wrap {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .video-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .content {
+      width: 100%;
+      max-width: 480px;
+      padding: 32px 24px 48px;
+      text-align: center;
+    }
+
+    .title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #8b2c0e;
+      line-height: 1.3;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #c4882a;
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+
+    .desc {
+      font-size: 15px;
+      font-weight: 300;
+      color: #4a3728;
+      line-height: 1.8;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: #8b2c0e;
+      text-decoration: none;
+      padding: 8px 20px;
+      border: 1px solid #c4882a;
+      border-radius: 24px;
+      transition: all 0.2s;
+    }
+
+    .nav a:hover {
+      background: #8b2c0e;
+      color: #f5f0e8;
+    }
+
+    .brand {
+      margin-top: 24px;
+      font-size: 11px;
+      color: #a89070;
+      letter-spacing: 0.08em;
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="card-header">
-      <div class="badge">01</div>
-      <div>
-        <h1>Video 1</h1>
-        <p>Tiêu đề video — chỉnh trong file HTML</p>
-      </div>
-    </div>
-    <div class="video-wrap">
-      <iframe 
-        src="https://drive.google.com/file/d/18Dxeb8KcFiRu3RgaKU0EEg755t92_Es2/preview"
-        allow="autoplay"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="card-footer">
-      <span class="brand">© Hoàng</span>
-      <div class="nav-links">
-        <a href="video7.html">← Trước</a>
-        <a href="video2.html">Tiếp →</a>
-      </div>
-    </div>
+
+  <div class="video-wrap">
+    <iframe
+      src="https://drive.google.com/file/d/18Dxeb8KcFiRu3RgaKU0EEg755t92_Es2/preview"
+      allow="autoplay"
+      allowfullscreen>
+    </iframe>
   </div>
+
+  <div class="content">
+    <h1 class="title">Truyện Cổ Tích Việt Nam</h1>
+    <div class="divider"></div>
+    <p class="desc">Kho tàng cổ tích Việt Nam — nơi lưu giữ những câu chuyện dân gian ngàn đời, gắn liền với hồn dân tộc và ký ức tuổi thơ.</p>
+
+    <div class="nav">
+      <a href="video7.html">← Trước</a>
+      <a href="video2.html">Tiếp →</a>
+    </div>
+
+    <div class="brand">© HOÀNG</div>
+  </div>
+
 </body>
 </html>
