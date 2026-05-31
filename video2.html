@@ -3,179 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video 2</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Thánh Gióng (Phù Đổng Thiên Vương)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #f9f8f6;
-      --surface: #ffffff;
-      --border: #e8e6e1;
-      --text-primary: #1a1a18;
-      --text-muted: #8a8880;
-      --accent: #1a1a18;
-      --radius: 16px;
-    }
-
-    html, body {
-      height: 100%;
-      background: var(--bg);
-      font-family: 'DM Sans', sans-serif;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 24px 16px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      width: 100%;
-      max-width: 480px;
-      overflow: hidden;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04);
-    }
-
-    .card-header {
-      padding: 20px 24px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .badge {
-      width: 32px;
-      height: 32px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 500;
-      flex-shrink: 0;
-    }
-
-    .card-header h1 {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--text-primary);
-      letter-spacing: -0.01em;
-    }
-
-    .card-header p {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 1px;
-    }
-
-    .video-wrap {
-      position: relative;
-      width: 100%;
-      background: #000;
-    }
-
-    .video-wrap video {
-      width: 100%;
-      display: block;
-      max-height: 72vh;
-      object-fit: contain;
-    }
-
-    .card-footer {
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .brand {
-      font-size: 12px;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 6px;
-    }
-
-    .nav-links a {
-      font-size: 12px;
-      color: var(--text-muted);
-      text-decoration: none;
-      padding: 4px 10px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      transition: all 0.15s;
-    }
-
-    .nav-links a:hover {
-      color: var(--text-primary);
-      border-color: var(--text-primary);
-    }
-
-    .no-video {
-      padding: 48px 24px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 14px;
-    }
-
-    .no-video svg {
-      margin-bottom: 12px;
-      opacity: 0.3;
-    }
+    body { background: #f5f0e8; font-family: 'Be Vietnam Pro', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+    .video-wrap { width: 100%; max-width: 480px; background: #000; position: relative; overflow: hidden; aspect-ratio: 16/9; }
+    .video-wrap video { width: 100%; display: block; pointer-events: none; }
+    .video-wrap::after { content: ''; position: absolute; inset: 0; z-index: 10; }
+    video::-webkit-media-controls { display: none !important; }
+    video::-webkit-media-controls-enclosure { display: none !important; }
+    video::-webkit-media-controls-panel { display: none !important; }
+    .content { width: 100%; max-width: 480px; padding: 32px 24px 48px; text-align: center; }
+    .title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #8b2c0e; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 20px; }
+    .divider { width: 48px; height: 2px; background: #c4882a; margin: 0 auto 20px; border-radius: 2px; }
+    .desc { font-size: 15px; font-weight: 300; color: #4a3728; line-height: 1.8; }
+    .nav { display: flex; justify-content: center; gap: 12px; margin-top: 32px; }
+    .nav a { font-size: 13px; font-weight: 500; color: #8b2c0e; text-decoration: none; padding: 8px 20px; border: 1px solid #c4882a; border-radius: 24px; transition: all 0.2s; }
+    .nav a:hover { background: #8b2c0e; color: #f5f0e8; }
+    .brand { margin-top: 24px; font-size: 11px; color: #a89070; letter-spacing: 0.08em; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="card-header">
-      <div class="badge">02</div>
-      <div>
-        <h1>Video 2</h1>
-        <p>Tiêu đề video — chỉnh trong file HTML</p>
-      </div>
-    </div>
-
-    <div class="video-wrap" id="videoWrap">
-      <!-- Đặt file video2.mp4 cùng thư mục, hoặc thay src bên dưới -->
-      <video id="player" controls playsinline preload="metadata">
-        <source src="videos/video2.mp4" type="video/mp4" />
-        Trình duyệt không hỗ trợ video.
-      </video>
-    </div>
-
-    <div class="card-footer">
-      <span class="brand">© Hoàng</span>
-      <div class="nav-links">
-        <a href="video1.html">← Trước</a>
-        <a href="video3.html">Tiếp →</a>
-      </div>
-    </div>
+  <div class="video-wrap">
+    <video id="vid" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
+      <!-- Thay LINK_CLOUDINARY bằng URL video từ Cloudinary -->
+    </video>
   </div>
-
+  <div class="content">
+    <h1 class="title">Thánh Gióng (Phù Đổng Thiên Vương)</h1>
+    <div class="divider"></div>
+    <p class="desc">Thánh Gióng là vị anh hùng trong truyền thuyết Việt Nam, tượng trưng cho lòng yêu nước và ý chí chống giặc ngoại xâm. Từ một cậu bé lên ba chưa biết nói, Gióng bỗng vươn mình thành tráng sĩ, cưỡi ngựa sắt đánh tan giặc Ân. Sau chiến thắng, ông bay về trời và được nhân dân tôn kính là một trong Tứ bất tử của dân tộc Việt Nam.</p>
+    <div class="nav">
+      <a href="video1.html">← Trước</a>
+      <a href="video3.html">Tiếp →</a>
+    </div>
+    <div class="brand">© HOÀNG</div>
+  </div>
   <script>
-    const v = document.getElementById('player');
-    v.addEventListener('loadedmetadata', () => {
-      const ratio = v.videoHeight / v.videoWidth;
-      if (ratio > 1.4) {
-        v.style.maxHeight = '75vh';
-        v.style.width = 'auto';
-        v.style.margin = '0 auto';
-      }
-    });
+    const v = document.getElementById('vid');
+    v.removeAttribute('controls');
+    v.play().catch(() => {});
   </script>
 </body>
 </html>
