@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lý Video — Hoàng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f6;
+      --surface: #ffffff;
+      --border: #e8e6e1;
+      --border-strong: #d0cec9;
+      --text-primary: #1a1a18;
+      --text-muted: #8a8880;
+      --accent: #1a1a18;
+      --radius: 14px;
+    }
+
+    html, body {
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: var(--text-primary);
+    }
+
+    body { padding: 40px 24px 64px; }
+
+    .top {
+      max-width: 780px;
+      margin: 0 auto 36px;
+    }
+
+    .top-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .top h1 {
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .top h1 span { font-weight: 500; }
+
+    .top p {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .base-url-row {
+      max-width: 780px;
+      margin: 0 auto 32px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .base-url-row label {
+      font-size: 13px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .base-url-row input {
+      flex: 1;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      padding: 9px 14px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .base-url-row input:focus { border-color: var(--accent); }
+
+    .base-url-row button {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 9px 18px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .base-url-row button:hover { opacity: 0.8; }
+
+    .grid {
+      max-width: 780px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+
+    .card-top {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .num {
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .qr-area {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .qr-area canvas, .qr-area img {
+      border-radius: 4px;
+    }
+
+    .card-bottom {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .url-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+    .open-btn {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-primary);
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .open-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .footer {
+      max-width: 780px;
+      margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .print-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .print-btn:hover { color: var(--text-primary); border-color: var(--border-strong); }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .base-url-row, .footer { display: none; }
+      .grid { grid-template-columns: repeat(4, 1fr); gap: 12px; }
+      .card { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top">
+  <div class="top-label">Quản lý QR</div>
+  <h1>Video <span>QR Hub</span></h1>
+  <p>Nhập URL gốc của trang web (GitHub Pages hoặc hosting), nhấn <strong>Tạo QR</strong> để tự động sinh mã cho 7 video.</p>
+</div>
+
+<div class="base-url-row">
+  <label>URL gốc:</label>
+  <input type="text" id="baseUrl" placeholder="https://ten-cua-ban.github.io/video-site" />
+  <button onclick="generateAll()">Tạo QR</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="footer">
+  <span>© Hoàng — Video QR Hub</span>
+  <button class="print-btn" onclick="window.print()">In trang QR</button>
+</div>
+
+<script>
+  const videos = [
+    { n: 1, title: 'Video 1', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 2, title: 'Video 2', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 3, title: 'Video 3', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 4, title: 'Video 4', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 5, title: 'Video 5', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 6, title: 'Video 6', desc: 'Chỉnh tiêu đề tại đây' },
+    { n: 7, title: 'Video 7', desc: 'Chỉnh tiêu đề tại đây' },
+  ];
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function generateAll() {
+    let base = document.getElementById('baseUrl').value.trim().replace(/\/$/, '');
+    if (!base) { alert('Nhập URL gốc trước nhé!'); return; }
+    renderCards(base);
+  }
+
+  function renderCards(base) {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+
+    videos.forEach(v => {
+      const url = `${base}/video${v.n}.html`;
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="num">${pad(v.n)}</div>
+          <div>
+            <div class="card-title">${v.title}</div>
+            <div class="card-sub">${v.desc}</div>
+          </div>
+        </div>
+        <div class="qr-area" id="qr${v.n}"></div>
+        <div class="card-bottom">
+          <span class="url-text" title="${url}">${url}</span>
+          <a class="open-btn" href="${url}" target="_blank">Mở ↗</a>
+        </div>
+      `;
+      grid.appendChild(card);
+
+      new QRCode(document.getElementById(`qr${v.n}`), {
+        text: url,
+        width: 160,
+        height: 160,
+        colorDark: '#1a1a18',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    });
+  }
+
+  // Auto-render với URL mẫu nếu chạy local
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    document.getElementById('baseUrl').value = 'https://username.github.io/video-site';
+    renderCards('https://username.github.io/video-site');
+  }
+</script>
+</body>
+</html>

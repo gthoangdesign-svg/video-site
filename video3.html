@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f9f8f6;
+      --surface: #ffffff;
+      --border: #e8e6e1;
+      --text-primary: #1a1a18;
+      --text-muted: #8a8880;
+      --accent: #1a1a18;
+      --radius: 16px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 32px rgba(0,0,0,0.04);
+    }
+
+    .card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge {
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+
+    .card-header h1 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .card-header p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      background: #000;
+    }
+
+    .video-wrap video {
+      width: 100%;
+      display: block;
+      max-height: 72vh;
+      object-fit: contain;
+    }
+
+    .card-footer {
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 6px;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      transition: all 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .no-video {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .no-video svg {
+      margin-bottom: 12px;
+      opacity: 0.3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="card-header">
+      <div class="badge">03</div>
+      <div>
+        <h1>Video 3</h1>
+        <p>Tiêu đề video — chỉnh trong file HTML</p>
+      </div>
+    </div>
+
+    <div class="video-wrap" id="videoWrap">
+      <!-- Đặt file video3.mp4 cùng thư mục, hoặc thay src bên dưới -->
+      <video id="player" controls playsinline preload="metadata">
+        <source src="videos/video3.mp4" type="video/mp4" />
+        Trình duyệt không hỗ trợ video.
+      </video>
+    </div>
+
+    <div class="card-footer">
+      <span class="brand">© Hoàng</span>
+      <div class="nav-links">
+        <a href="video2.html">← Trước</a>
+        <a href="video4.html">Tiếp →</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const v = document.getElementById('player');
+    v.addEventListener('loadedmetadata', () => {
+      const ratio = v.videoHeight / v.videoWidth;
+      if (ratio > 1.4) {
+        v.style.maxHeight = '75vh';
+        v.style.width = 'auto';
+        v.style.margin = '0 auto';
+      }
+    });
+  </script>
+</body>
+</html>
