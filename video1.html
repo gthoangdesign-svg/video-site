@@ -21,6 +21,8 @@
       width: 100%;
       max-width: 480px;
       background: #000;
+      position: relative;
+      overflow: hidden;
     }
 
     .video-wrap video {
@@ -28,6 +30,19 @@
       display: block;
       pointer-events: none;
     }
+
+    /* Lớp phủ trong suốt chặn mọi tương tác */
+    .video-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+
+    video::-webkit-media-controls { display: none !important; }
+    video::-webkit-media-controls-enclosure { display: none !important; }
+    video::-webkit-media-controls-panel { display: none !important; }
+    video::--moz-range-thumb { display: none !important; }
 
     .content {
       width: 100%;
@@ -80,10 +95,7 @@
       transition: all 0.2s;
     }
 
-    .nav a:hover {
-      background: #8b2c0e;
-      color: #f5f0e8;
-    }
+    .nav a:hover { background: #8b2c0e; color: #f5f0e8; }
 
     .brand {
       margin-top: 24px;
@@ -96,7 +108,7 @@
 <body>
 
   <div class="video-wrap">
-    <video autoplay loop muted playsinline>
+    <video id="vid" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
       <source src="https://res.cloudinary.com/duuvg9vux/video/upload/v1780250885/B%C3%ACa_n5b6c6.mp4" type="video/mp4" />
     </video>
   </div>
@@ -105,14 +117,18 @@
     <h1 class="title">Truyện Cổ Tích Việt Nam</h1>
     <div class="divider"></div>
     <p class="desc">Kho tàng cổ tích Việt Nam — nơi lưu giữ những câu chuyện dân gian ngàn đời, gắn liền với hồn dân tộc và ký ức tuổi thơ.</p>
-
     <div class="nav">
       <a href="video7.html">← Trước</a>
       <a href="video2.html">Tiếp →</a>
     </div>
-
     <div class="brand">© HOÀNG</div>
   </div>
+
+  <script>
+    const v = document.getElementById('vid');
+    v.removeAttribute('controls');
+    v.play().catch(() => {});
+  </script>
 
 </body>
 </html>
