@@ -8,8 +8,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #f5f0e8; font-family: 'Be Vietnam Pro', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-    .video-wrap { width: 100%; max-width: 480px; background: #000; position: relative; overflow: hidden; aspect-ratio: 16/9; }
-    .video-wrap video { width: 100%; display: block; pointer-events: none; }
+    .video-wrap { width: 100%; max-width: 480px; background: #000; position: relative; overflow: hidden; aspect-ratio: 2340/2700; }
+    .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .video-wrap::after { content: ''; position: absolute; inset: 0; z-index: 10; }
     video::-webkit-media-controls { display: none !important; }
     video::-webkit-media-controls-enclosure { display: none !important; }
@@ -27,7 +27,7 @@
 <body>
   <div class="video-wrap">
     <video id="vid" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
-      <!-- Thay LINK_CLOUDINARY bằng URL video từ Cloudinary -->
+      <source src="https://res.cloudinary.com/duuvg9vux/video/upload/v1780391285/ThanhGiong3_wbub8a.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="content">
