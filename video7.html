@@ -8,12 +8,15 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: #f5f0e8; font-family: 'Be Vietnam Pro', sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
-    .video-wrap { width: 100%; max-width: 480px; background: #000; position: relative; overflow: hidden; aspect-ratio: 16/9; }
-    .video-wrap video { width: 100%; display: block; pointer-events: none; }
+    .video-wrap { width: 100%; max-width: 480px; background: #000; position: relative; overflow: hidden; aspect-ratio: 2340/2700; }
+    .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .video-wrap::after { content: ''; position: absolute; inset: 0; z-index: 10; }
     video::-webkit-media-controls { display: none !important; }
     video::-webkit-media-controls-enclosure { display: none !important; }
     video::-webkit-media-controls-panel { display: none !important; }
+    .tap-overlay { position: fixed; inset: 0; z-index: 999; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .tap-overlay.hidden { display: none; }
+    .tap-btn { background: rgba(0,0,0,0.5); color: #fff; font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; padding: 14px 28px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.4); }
     .content { width: 100%; max-width: 480px; padding: 32px 24px 48px; text-align: center; }
     .title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #8b2c0e; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 20px; }
     .divider { width: 48px; height: 2px; background: #c4882a; margin: 0 auto 20px; border-radius: 2px; }
@@ -25,9 +28,12 @@
   </style>
 </head>
 <body>
+  <div class="tap-overlay" id="overlay" onclick="startPlay()">
+    <div class="tap-btn">▶ Chạm để xem</div>
+  </div>
   <div class="video-wrap">
     <video id="vid" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
-      <!-- Thay LINK_CLOUDINARY bằng URL video từ Cloudinary -->
+      <source src="https://res.cloudinary.com/duuvg9vux/video/upload/v1780613465/ThachSanh_dituwu.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="content">
@@ -43,7 +49,13 @@
   <script>
     const v = document.getElementById('vid');
     v.removeAttribute('controls');
-    v.play().catch(() => {});
+    v.play().catch(() => {
+      document.getElementById('overlay').classList.remove('hidden');
+    });
+    function startPlay() {
+      v.play();
+      document.getElementById('overlay').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
