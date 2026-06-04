@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thánh Gióng (Phù Đổng Thiên Vương)</title>
+  <title>Sơn Tinh – Thủy Tinh</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Be+Vietnam+Pro:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,6 +14,9 @@
     video::-webkit-media-controls { display: none !important; }
     video::-webkit-media-controls-enclosure { display: none !important; }
     video::-webkit-media-controls-panel { display: none !important; }
+    .tap-overlay { position: fixed; inset: 0; z-index: 999; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .tap-overlay.hidden { display: none; }
+    .tap-btn { background: rgba(0,0,0,0.5); color: #fff; font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; padding: 14px 28px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.4); }
     .content { width: 100%; max-width: 480px; padding: 32px 24px 48px; text-align: center; }
     .title { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: #8b2c0e; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 20px; }
     .divider { width: 48px; height: 2px; background: #c4882a; margin: 0 auto 20px; border-radius: 2px; }
@@ -25,15 +28,18 @@
   </style>
 </head>
 <body>
+  <div class="tap-overlay" id="overlay" onclick="startPlay()">
+    <div class="tap-btn">▶ Chạm để xem</div>
+  </div>
   <div class="video-wrap">
     <video id="vid" autoplay loop muted playsinline disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback">
-      <source src="https://res.cloudinary.com/duuvg9vux/video/upload/v1780391285/ThanhGiong3_wbub8a.mp4" type="video/mp4" />
+      <source src="https://res.cloudinary.com/duuvg9vux/video/upload/v1780611630/AuCoLacLongQuan_auknbj.mp4" type="video/mp4" />
     </video>
   </div>
   <div class="content">
-    <h1 class="title">Thánh Gióng (Phù Đổng Thiên Vương)</h1>
+    <h1 class="title">Sơn Tinh – Thủy Tinh</h1>
     <div class="divider"></div>
-    <p class="desc">Thánh Gióng là vị anh hùng trong truyền thuyết Việt Nam, tượng trưng cho lòng yêu nước và ý chí chống giặc ngoại xâm. Từ một cậu bé lên ba chưa biết nói, Gióng bỗng vươn mình thành tráng sĩ, cưỡi ngựa sắt đánh tan giặc Ân. Sau chiến thắng, ông bay về trời và được nhân dân tôn kính là một trong Tứ bất tử của dân tộc Việt Nam.</p>
+    <p class="desc">Truyền thuyết kể về cuộc kén rể của vua Hùng dành cho công chúa Mỵ Nương. Sơn Tinh – chúa tể núi rừng và Thủy Tinh – chúa tể sông nước cùng đến cầu hôn, nhưng Sơn Tinh giành chiến thắng. Tức giận, Thủy Tinh hằng năm dâng nước đánh Sơn Tinh, tạo nên hình tượng lý giải hiện tượng lũ lụt trong đời sống người Việt.</p>
     <div class="nav">
       <a href="video1.html">← Trước</a>
       <a href="video3.html">Tiếp →</a>
@@ -43,7 +49,13 @@
   <script>
     const v = document.getElementById('vid');
     v.removeAttribute('controls');
-    v.play().catch(() => {});
+    v.play().catch(() => {
+      document.getElementById('overlay').classList.remove('hidden');
+    });
+    function startPlay() {
+      v.play();
+      document.getElementById('overlay').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
